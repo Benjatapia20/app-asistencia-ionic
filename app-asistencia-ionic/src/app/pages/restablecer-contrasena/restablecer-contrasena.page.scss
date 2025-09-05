@@ -1,0 +1,9 @@
+//Estilos de la página Restablecer Contraseña con animaciones simples para la tarjeta del formulario.
+.card {
+    animation: pop 220ms ease-in;
+}
+
+@keyframes pop {
+    from { transform: scale(0.98); opacity: 0.9; }
+    to { transform: scale(1); opacity: 1; }
+}

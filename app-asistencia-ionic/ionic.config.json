@@ -1,0 +1,7 @@
+{
+  "name": "app-asistencia-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

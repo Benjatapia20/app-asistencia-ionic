@@ -1,0 +1,16 @@
+//Estilos de la página Inicio con animaciones de entrada (fadeIn) para la tarjeta de bienvenida.
+//Estilos del contador del aforo (Peso de la fuente, tamaño y márgenes.)
+.page-enter {
+    animation: fadeIn 350ms ease-in;
+}
+
+.aforo {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 8px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}

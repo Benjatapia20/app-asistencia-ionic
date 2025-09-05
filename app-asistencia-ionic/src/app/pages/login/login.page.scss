@@ -1,0 +1,8 @@
+//Estilos específicos de la página Login con animaciones y estilos para los imputs y botones.
+.form{
+    animation: fadeInUp 280ms ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px)}
+}

@@ -1,0 +1,16 @@
+<!--Vista de la página Restablecer Contraseña-->
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Restablecer Contraseña</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!--Contiene el campo del usuario y un botón para envíar solicitud para recuperar su contraseña-->
+<ion-content class="ion-padding">
+    <ion-item>
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input [(ngModel)]="usuario"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="restablecer()">Enviar</ion-button>
+</ion-content>
