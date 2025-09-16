@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
     selector: 'app-inicio',
     templateUrl: './inicio.page.html',
     styleUrls: ['./inicio.pages.scss'],
-    standalone: false
+    standalone: false,
 })
 //InicioPage es la página principal después de la página Login.
 export class InicioPage implements OnInit, OnDestroy {
