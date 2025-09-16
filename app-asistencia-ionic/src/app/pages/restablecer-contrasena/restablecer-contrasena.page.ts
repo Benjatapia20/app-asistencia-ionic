@@ -5,7 +5,8 @@ import { ToastController } from "@ionic/angular";
 @Component({
     selector: 'app-restablecer-contrasena',
     templateUrl: './restablecer-contrasena.page.html',
-    styleUrls: ['./restablecer-contrasena.page.scss']
+    styleUrls: ['./restablecer-contrasena.page.scss'],
+    standalone: false
 })
 export class RestablecerContrasenaPage {
     usuario = '';
