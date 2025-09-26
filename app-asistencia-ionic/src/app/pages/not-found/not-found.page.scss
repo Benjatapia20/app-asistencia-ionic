@@ -1,0 +1,25 @@
+ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    background-color: #f8d7da;
+}
+
+h2 {
+    color: #721c24;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    color: #721c24;
+    margin-bottom: 2rem;
+}
+
+ion-button {
+    --background: #721c24;
+    --color: #fff;
+}
