@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
     selector: 'app-inicio',
     templateUrl: './inicio.page.html',
-    styleUrls: ['./inicio.pages.scss'],
+    styleUrls: ['./inicio.page.scss'],
     standalone: false,
 })
 //InicioPage es la página principal después de la página Login.
@@ -14,9 +15,16 @@ export class InicioPage implements OnInit, OnDestroy {
     eventos: string[] = ['Concierto Indie', 'Feria De Libros', 'Obra De Teatro'];
     private timer?: any;
 
-    constructor(private router: Router) {}
+    constructor(private router: Router, private storage: Storage)
+    {
+        this.initStorage();
+    }
 
-    ngOnInit() {
+    async initStorage() {
+        await this.storage.create();
+    }
+
+    async ngOnInit() {
         //Se recupera el usuario (Si existe) enviado desde el login
         const nav = this.router.getCurrentNavigation();
         this.usuario = (nav?.extras.state as any)?.usuario ?? 'usuario';
@@ -29,5 +37,11 @@ export class InicioPage implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         if(this.timer) clearInterval(this.timer);
+    }
+
+    async logout() {
+        await this.storage.remove('isLoggedIn');
+        await this.storage.remove('usuario');
+        this.router.navigate(['/login']);
     }
 }

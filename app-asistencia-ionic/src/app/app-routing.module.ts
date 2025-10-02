@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "./pages/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -17,17 +18,17 @@ const routes: Routes = [
   },
   {
     path: 'inicio',
-    loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioPageModule)
+    loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioPageModule),
+    canActivate: [AuthGuard]
   },
-
   {
-  path: '**',
-  loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundPageModule)
+    path: '**',
+    loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundPageModule)
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
