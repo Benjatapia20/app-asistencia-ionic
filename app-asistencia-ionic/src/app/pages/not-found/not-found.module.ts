@@ -9,6 +9,7 @@ import { IonicModule } from "@ionic/angular";
 import { NotFoundPageRoutingModule } from "./not-found-routing.module";
 import { NotFoundPage } from "./not-found.page";
 
+//Es como una "Carpeta De Configuración" de la página NotFound, la cuál organiza lo que necesita para funcionar.
 @NgModule({
     imports: [CommonModule, FormsModule, IonicModule, NotFoundPageRoutingModule],
     declarations: [NotFoundPage]
