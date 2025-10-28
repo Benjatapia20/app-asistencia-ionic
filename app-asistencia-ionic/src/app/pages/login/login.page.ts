@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 import { SQLiteService } from '../services/sqlite.service';
 
 @Component({
@@ -16,51 +17,47 @@ export class LoginPage {
   constructor(
     private router: Router,
     private toastCtrl: ToastController,
+    private storage: Storage,
     private sqliteService: SQLiteService
-  ) {}
-
-  async login() {
-    if (!this.usuario || !this.password) {
-      return this.mostrarToast('Completa ambos campos.');
-    }
-
-    try {
-      // Buscar el usuario en la base de datos
-      const user = await this.sqliteService.getUser(this.usuario);
-
-      if (!user) {
-        return this.mostrarToast('Usuario no encontrado.');
-      }
-
-      if (user.password !== this.password) {
-        return this.mostrarToast('Contraseña incorrecta.');
-      }
-
-      await this.mostrarToast('Inicio de sesión exitoso.');
-
-      // Redirige a la página de inicio
-      this.router.navigate(['/inicio']);
-
-      // Limpia los campos
-      this.usuario = '';
-      this.password = '';
-
-    } catch (err) {
-      console.error('Error en el inicio de sesión', err);
-      this.mostrarToast('Error al iniciar sesión.');
-    }
+  ) {
+    this.initStorage();
   }
 
-  async irARegistro() {
+  async initStorage() {
+    await this.storage.create();
+  }
+
+  async ingresar () {
+    if(!this.usuario || !this.password) {
+      const t = await this.toastCtrl.create({
+        message: 'Completa cada campo con tu usuario y tu contraseña',
+        duration: 1500,
+        position: 'top'
+      });
+      return t.present();
+    }
+
+    const user = await this.sqliteService.getUser(this.usuario);
+    if (!user || user.password !== this.password) {
+      const t = await this.toastCtrl.create({
+        message: 'Usuario no encontrado o contraseña incorrecta',
+        duration: 1500,
+        position: 'top'
+      });
+      return t.present();
+    }
+
+    await this.storage.set('isLoggedIn', true);
+    await this.storage.set('usuario', this.usuario);
+
+    this.router.navigate(['/inicio'], {state: { usuario: this.usuario} });
+  }
+
+  irRestablecer() {
+    this.router.navigate(['/restablecer-contrasena']);
+  }
+
+  irRegistro() {
     this.router.navigate(['/registro']);
-  }
-
-  private async mostrarToast(mensaje: string) {
-    const toast = await this.toastCtrl.create({
-      message: mensaje,
-      duration: 2000,
-      position: 'top',
-    });
-    await toast.present();
   }
 }
