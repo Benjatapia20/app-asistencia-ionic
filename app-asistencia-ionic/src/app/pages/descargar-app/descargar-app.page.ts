@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-descargar-app',
   templateUrl: './descargar-app.page.html',
   styleUrls: ['./descargar-app.page.scss'],
+  standalone: false,
 })
 export class DescargarAppPage {
 
