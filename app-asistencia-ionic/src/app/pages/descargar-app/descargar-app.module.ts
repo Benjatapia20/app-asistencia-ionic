@@ -7,12 +7,7 @@ import { DescargarAppPageRoutingModule } from './descargar-app-routing.module';
 import { DescargarAppPage } from './descargar-app.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    DescargarAppPageRoutingModule
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, DescargarAppPageRoutingModule],
   declarations: [DescargarAppPage]
 })
 export class DescargarAppPageModule {}
